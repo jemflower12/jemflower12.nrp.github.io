@@ -65,17 +65,22 @@ window.addEventListener('beforeinstallprompt', (e) => {
   showInstallPromotion();
 });
 
-buttonInstall.addEventListener('click', (e) => {
-  // Hide the app provided install promotion
-  hideMyInstallPromotion();
-  // Show the install prompt
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  btnAdd.style.display = 'block';
+});
+
+btnAdd.addEventListener('click',(e) => {
   deferredPrompt.prompt();
-  // Wait for the user to respond to the prompt
-  deferredPrompt.userChoice.then((choiceResult) => {
-    if (choiceResult.outcome === 'accepted') {
-      console.log('User accepted the install prompt');
-    } else {
-      console.log('User dismissed the install prompt');
+  deferredPrompt.UserChoice.then((choiceResult) => {
+    if(choiceResult.outcome === 'accepted'){
+      console.log('User accepted the A2HS prompt');
     }
-  })
+    deferredPromt = NULL;
+  });
+});
+
+window.addEventListener('appinstalled', (evt) => {
+  app.logEvent('a2hs', 'instaled');
 });
