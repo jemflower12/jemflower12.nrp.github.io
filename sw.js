@@ -9,7 +9,7 @@ self.addEventListener('install', function(event) {
         ])
       })
   );
-  return self.clients.claim();
+
 });
 
 self.addEventListener('fetch', function(event) {
