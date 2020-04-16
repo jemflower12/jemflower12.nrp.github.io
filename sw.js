@@ -13,17 +13,14 @@ self.addEventListener('install', function(event) {
   return self.clients.claim();
 });
 
-self.addEventListener('install', function(event) {
-  event.waitUntil(
-    caches.open('mygame-core-v1').then(function(cache) {
-      cache.addAll(
-        // levels 11-20
-      );
-      return cache.addAll(
-        // core assets & levels 1-10
-      );
-    })
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    caches.match(event.request)
+      .then(function(res) {
+        return res;
+      })
   );
 });
+
 
 
