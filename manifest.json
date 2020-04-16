@@ -3,7 +3,7 @@
   "short_name": "PWAGram",
   "icons": [
     {
-      "src": "/src/images/icons/icon.png",
+      "src": "/images/icons/icon.png",
       "type": "image/png",
       "sizes": "512x512"
     }
