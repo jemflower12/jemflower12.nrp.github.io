@@ -54,33 +54,10 @@ button.addEventListener('click', function() {
   animate();
 });
 
-let deferredPrompt;
-
-window.addEventListener('beforeinstallprompt', (e) => {
-  // Prevent the mini-infobar from appearing on mobile
-  e.preventDefault();
-  // Stash the event so it can be triggered later.
-  deferredPrompt = e;
-  // Update UI notify the user they can install the PWA
-  showInstallPromotion();
-});
-
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  btnAdd.style.display = 'block';
-});
-
-btnAdd.addEventListener('click',(e) => {
-  deferredPrompt.prompt();
-  deferredPrompt.UserChoice.then((choiceResult) => {
-    if(choiceResult.outcome === 'accepted'){
-      console.log('User accepted the A2HS prompt');
-    }
-    deferredPromt = NULL;
-  });
-});
-
-window.addEventListener('appinstalled', (evt) => {
-  app.logEvent('a2hs', 'instaled');
+var deferredPrompt;
+window.addEventListener('beforeinstallprompt', function(event) {
+  console.log('beforeinstallprompt fired');
+  event.preventDefault();
+  deferredPrompt = event;
+  return false;
 });
