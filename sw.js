@@ -4,6 +4,8 @@ self.addEventListener('install', function(event) {
         cache.addAll([
           '/',
           '/index.html',
+         '/index.html?homescreen=1',
+       '/?homescreen=1',
           '/manifest.json',
           '/favicon.ico',
           '/src/css/app.css',
@@ -23,5 +25,8 @@ self.addEventListener('fetch', function(event) {
   );
 });
 
+self.addEventListener('fetch', function(event) {
+ console.log(event.request.url);
+});
 
 
