@@ -6,10 +6,11 @@ self.addEventListener('install', function(event) {
           '/index.html',
           '/src/css/app.css',
           '/src/js/app.js',
+          '/manifest.json'
         ])
       })
   );
-
+  return self.clients.claim();
 });
 
 self.addEventListener('fetch', function(event) {
