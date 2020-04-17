@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>N02</title>
+<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+    <style>
+        .flex-container {
+  display: flex;
+  flex-direction: column;
+  background-color: DodgerBlue;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  margin: 10px;
+  padding: 20px;
+  font-family: 'Sofia';
+  font-size: 20px;
+}
+    </style>
+</head>
+    <body>
+        <h1>Search mahasiswa</h1>
+        <label>Text</label>
+        <input type="text" id="name" >
+        <button onclick= "search()" >SEARCH</button>
+
+<div class="flex-container" id="hasil">
+
+</div>
+
+  <script>      
+ function createNode(element) {
+    return document.createElement(element);
+}
+
+function append(parent, el) {
+  return parent.appendChild(el);
+}
+function search(){
+const ul = document.getElementById('hasil');
+var text= document.getElementById("name").value;
+const url = 'https://john.petra.ac.id/~justin/finger.php?s='+text;
+fetch(url)
+.then((resp) => resp.json())
+.then(function(data) {
+  let hasil = data.hasil;
+  return hasil.map(function(hasils) {
+    let div= createNode('div'),
+        login = createNode('text'),
+        nama= createNode('text');
+    login.innerHTML=  `${'<br>'}${hasils.login}${'<br>'}`
+    nama.innerHTML = `${hasils.nama}${'<br>'}`;
+    append(div, login);
+    append(div, nama);
+    append(ul,div);
+  })
+})
+.catch(function(error) {
+  console.log(error);
+});
+}
+
+</script>
+    </body>
+</html>
