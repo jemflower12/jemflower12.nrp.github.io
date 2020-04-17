@@ -3,8 +3,8 @@ self.addEventListener('install', function(event) {
     caches.open('first-app').then(function(cache) {
         cache.addAll([
           '/',
-          '/index.html',
-         '/index.html?homescreen=1',
+          '/nrp.html',
+         '/nrp.html?homescreen=1',
        '/?homescreen=1',
           '/manifest.json',
           '/favicon.ico',
